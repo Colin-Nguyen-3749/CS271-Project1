@@ -7,6 +7,9 @@
 // class.
 //=========================================
 
+#include "DoublyLinkedList.h"
+using namespace std;
+
 //===================================================
 // default constructor
 // Creates a new empty list object
@@ -35,22 +38,31 @@ template <typename T>
 template <typename T>
 		DoublyLinkedList<T>::DoublyLinkedList		( const DoublyLinkedList<T> &mylist )
 {
+
+	// fromPtr = points to old list; toPtr = points to new list
 	Node *fromPtr;
 	Node *toPtr;
 
+	// If myList is just empty, return an empty doubly linked list constructor
 	if ( mylist.head == NULL ) {
-		head = NULL;
+		head = nullptr;
+		tail = nullptr;
 		return;
 	}
 
+	// Set the fromPtr to the head of myList
 	fromPtr = mylist.head;
-	head = new Node;
-	tail = new Node;
-	tail = nullptr;
-	toPtr = head;
 
-	//previous = head;
+	// Create a new head and tail pointing towards the list that we created to copy stuff to
+	head->next = new Node; 
+	tail = nullptr;
 	
+	// Set toPtr to the head of the newly created doubly linked list
+	toPtr = head;
+	// create a new node after the head and move toPtr there
+	toPtr->next = new Node;
+	toPtr = toPtr->next;
+
 	toPtr->val = fromPtr->val;
 	fromPtr = fromPtr->next;
 	while ( fromPtr != NULL ) {
