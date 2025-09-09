@@ -47,9 +47,11 @@ template <typename T>
 	if ( mylist.head == NULL ) {
 		head = nullptr;
 		tail = nullptr;
+		size = 0;
 		return;
 	}
 
+	size = 0;
 	// Set the fromPtr to the head of myList
 	fromPtr = mylist.head;
 
@@ -61,6 +63,7 @@ template <typename T>
 	toPtr = head;
 	// create a new node after the head and move toPtr there
 	toPtr->next = new Node;
+	size++;
 	toPtr = toPtr->next;
 	toPtr->prev = nullptr; //set prev pointer for the first node to nullptr
 
@@ -75,6 +78,7 @@ template <typename T>
 		toPtr = toPtr->next;
 		toPtr->val = fromPtr->val;
 		fromPtr = fromPtr->next;
+		size++;
 	}
 	toPtr->next = nullptr; // set last node next to nullptr
 	tail->prev = toPtr; // set this node that toPtr is pointing at as the previous node to tail
