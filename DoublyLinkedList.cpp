@@ -78,6 +78,7 @@ template <typename T>
 	}
 	toPtr->next = nullptr; // set last node next to nullptr
 	tail->prev = toPtr; // set this node that toPtr is pointing at as the previous node to tail
+	return;
 }
 
 //===================================================
@@ -168,7 +169,7 @@ void 		DoublyLinkedList<T>::append	( const T &item )
 	Node *qtr = new Node;
 	
 	// have qtr point to the end of the list (qtr)
-	tail->prev = qtr;
+	tail = qtr;
 	qtr->next = nullptr; // since qtr is the end of the llist, have it point to nullptr
 	
 	//Step 3) set item to new item
