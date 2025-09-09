@@ -170,7 +170,7 @@ void 		DoublyLinkedList<T>::append	( const T &item )
 	
 	// have qtr point to the end of the list (qtr)
 	tail = qtr;
-	qtr->next = nullptr; // since qtr is the end of the llist, have it point to nullptr
+	qtr->prev = nullptr; // since qtr is the end of the llist, have it point to nullptr
 	
 	//Step 3) set item to new item
 	qtr->val = item;
@@ -180,14 +180,11 @@ void 		DoublyLinkedList<T>::append	( const T &item )
 		head = qtr;
 	} else {
 		//not empty list	
-		/*Node *ptr = head;
+		Node *ptr = head;
 		while ( ptr->next != nullptr ) {
 			ptr = ptr->next;
 		}
 		ptr->next = qtr;
-		*/
-		
-		
 	}
 }
 
@@ -222,7 +219,7 @@ T &		DoublyLinkedList<T>::operator[]	( int index )
 // are anything from 0 up to the length. If the 
 // position is equal to the length then this function 
 // acts like an append. All values already in the
-// list are moved up one spot to make room.
+// list are moved up one spot to make room.						// re-look over this one
 // PARAMETERS:
 // an item of type T and a specified position
 // RETURN VALUE:
@@ -261,7 +258,7 @@ void		DoublyLinkedList<T>::insert	( const T &item, int index )
 // remove
 // This removes an item at a specified position. 
 // Valid indices are 0 to size-1.   Invalid indices 
-// generate a run-time error and end the program.
+// generate a run-time error and end the program.			// re-look over this one 
 // PARAMETERS:
 // a specified position
 // RETURN VALUE:
@@ -299,7 +296,7 @@ void		DoublyLinkedList<T>::remove	( int index )
 // This will combine the two capacities of the lists 
 // as well as their values into a new list. 
 // PARAMETERS:
-// two list of items
+// two list of items										// re-look over this one
 // RETURN VALUE:
 // a merged list of the two input lists
 //===================================================
@@ -355,7 +352,7 @@ DoublyLinkedList<T> DoublyLinkedList<T>::operator+	( const DoublyLinkedList<T> &
 // length
 // This counts and returns the number of items that 
 // a list has
-// PARAMETERS:
+// PARAMETERS:												// This makes sense as of right now
 // none
 // RETURN VALUE:
 // the number of items (in nodes) that a list has
@@ -389,7 +386,6 @@ int		DoublyLinkedList<T>::length	( void ) const
 template <typename T>
 bool		DoublyLinkedList<T>::isEmpty	( void ) const
 {
-	Node *qtr;
 	if ( head == nullptr ) {
 		return true;
 	} else {
