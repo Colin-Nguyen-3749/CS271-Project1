@@ -8,6 +8,7 @@
 //=========================================
 
 #include "DoublyLinkedList.h"
+#include <iostream>
 using namespace std;
 
 //===================================================
@@ -38,7 +39,6 @@ template <typename T>
 template <typename T>
 		DoublyLinkedList<T>::DoublyLinkedList		( const DoublyLinkedList<T> &mylist )
 {
-
 	// fromPtr = points to old list; toPtr = points to new list
 	Node *fromPtr;
 	Node *toPtr;
@@ -71,7 +71,7 @@ template <typename T>
 	fromPtr = fromPtr->next;  // move to the next node of myList
 	while ( fromPtr != NULL ) {
 		toPtr->next = new Node;
-		toPtr->prev = toPtr // set prev pointer to current node before moving on
+		toPtr->prev = toPtr; // set prev to current node before moving on
 		toPtr = toPtr->next;
 		toPtr->val = fromPtr->val;
 		fromPtr = fromPtr->next;
@@ -106,6 +106,8 @@ template <typename T>
 template <typename T>
 DoublyLinkedList<T>	DoublyLinkedList<T>::operator=	( const DoublyLinkedList<T> &mylist )
 {
+	// This is exactly the same as the copy constructor because I was told that 
+	// the assignment operator and copy constructor are exactly the same in code in CS 173
 
 	// fromPtr = points to old list; toPtr = points to new list
 	Node *fromPtr;
@@ -115,7 +117,7 @@ DoublyLinkedList<T>	DoublyLinkedList<T>::operator=	( const DoublyLinkedList<T> &
 	if ( mylist.head == NULL ) {
 		head = nullptr;
 		tail = nullptr;
-		return;
+		return head;
 	}
 
 	// Set the fromPtr to the head of myList
@@ -139,13 +141,14 @@ DoublyLinkedList<T>	DoublyLinkedList<T>::operator=	( const DoublyLinkedList<T> &
 	fromPtr = fromPtr->next;  // move to the next node of myList
 	while ( fromPtr != NULL ) {
 		toPtr->next = new Node;
-		toPtr->prev = toPtr // set prev pointer to current node before moving on
+		toPtr->prev = toPtr; // set prev pointer to current node before moving on
 		toPtr = toPtr->next;
 		toPtr->val = fromPtr->val;
 		fromPtr = fromPtr->next;
 	}
 	toPtr->next = nullptr; // set last node next to nullptr
 	tail->prev = toPtr; // set this node that toPtr is pointing at as the previous node to tail
+
 }
 
 //===================================================
@@ -161,11 +164,12 @@ DoublyLinkedList<T>	DoublyLinkedList<T>::operator=	( const DoublyLinkedList<T> &
 template <typename T>
 void 		DoublyLinkedList<T>::append	( const T &item )
 {
-	//Step 1) create a new node
+	// create a new node
 	Node *qtr = new Node;
 	
-	//Step 2) set new node next to nil
-	qtr->next = tail; 
+	// have qtr point to the end of the list (qtr)
+	tail->prev = qtr;
+	qtr->next = nullptr; // since qtr is the end of the llist, have it point to nullptr
 	
 	//Step 3) set item to new item
 	qtr->val = item;
