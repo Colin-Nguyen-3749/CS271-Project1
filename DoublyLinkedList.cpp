@@ -62,12 +62,12 @@ template <typename T>
 	// Set toPtr to the head of the newly created doubly linked list
 	toPtr = head;
 	// create a new node after the head and move toPtr there
-	toPtr->next = new Node;
+	//toPtr->next = new Node; MISTAKE
 	size++;
-	toPtr = toPtr->next;
+	//toPtr = toPtr->next; MISTAKE
 	toPtr->prev = nullptr; //set prev pointer for the first node to nullptr
 
-	fromPtr = fromPtr->next; //move fromPtr to the next node that actually has a value 
+	//fromPtr = fromPtr->next; //move fromPtr to the next node that actually has a value 
 
 	toPtr->val = fromPtr->val; // copy the value from myList to new list
 
@@ -82,7 +82,6 @@ template <typename T>
 	}
 	toPtr->next = nullptr; // set last node next to nullptr
 	tail->prev = toPtr; // set this node that toPtr is pointing at as the previous node to tail
-	return;
 }
 
 //===================================================
