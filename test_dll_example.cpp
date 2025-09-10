@@ -560,43 +560,43 @@ void time_test() {
 
 int main() {
     test_append();
-    cout << "Okay" << endl;
+    cout << "append works" << endl;
     test_indexing1();
-    cout << "Okay1" << endl;
+    cout << "indexing works" << endl;
 
     test_indexing2();
-    cout << "Okay2" << endl;
+    cout << "indexing works" << endl;
 
     test_indexing3();
-    cout << "Okay3" << endl;
+    cout << "indexing works" << endl;
 
     test_insert();
-    cout << "Okay4" << endl;
+    cout << "insert works" << endl;
 
     test_remove();
-    cout << "Okay5" << endl;
+    cout << "remove works" << endl;
 
     test_remove1();
-    cout << "Okay6" << endl;
+    cout << "remove works" << endl;
 
 
     test_length();
-    cout << "Okay7" << endl;
+    cout << "length works" << endl;
 
     test_copy_constructor();
-    cout << "Okay8" << endl;
+    cout << "copy constructor works" << endl;
 
     test_assignment();
-    cout << "Okay9" << endl;
+    cout << "assignment works" << endl;
 
     test_isEmpty();
-    cout << "Okay10" << endl;
+    cout << "is empty works" << endl;
 
     test_clear();
-    cout << "Okay11" << endl;
+    cout << "clear works" << endl;
 
     test_concatenate();
-    cout << "Okay12" << endl;
+    cout << "concatenate works" << endl;
 
 
     time_test();

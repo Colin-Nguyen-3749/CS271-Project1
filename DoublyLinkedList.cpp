@@ -171,10 +171,11 @@ void 		DoublyLinkedList<T>::append	( const T &item )
 {
 	// create a new node
 	Node *qtr = new Node;
-	
+	qtr->next = nullptr;
+	qtr->prev = nullptr;
 	// have qtr point to the end of the list (qtr)
-	tail = qtr;
-	qtr->prev = nullptr; // since qtr is the end of the llist, have it point to nullptr
+	//tail = qtr;
+	//qtr->prev = nullptr; // since qtr is the end of the llist, have it point to nullptr
 	
 	//Step 3) set item to new item
 	qtr->val = item;
@@ -182,13 +183,30 @@ void 		DoublyLinkedList<T>::append	( const T &item )
 	if ( head == nullptr ) {
 		//special case of empty list
 		head = qtr;
+		tail = qtr;
 	} else {
 		//not empty list	
+		/*
 		Node *ptr = head;
 		while ( ptr->next != nullptr ) {
 			ptr = ptr->next;
 		}
 		ptr->next = qtr;
+		*/
+		//Node *ptr = tail;
+		tail->next = qtr;
+		qtr->prev = tail;
+		tail = qtr;
+/*
+		ptr = tail->prev;
+		//delete tail; ////////////////////////////////////////////////////////////////
+		ptr->next = new Node;
+		ptr = ptr->next;
+		//ptr->next = qtr;
+		ptr = ptr->next;
+		ptr->next = nullptr;
+		tail->prev = ptr;
+*/
 	}
 }
 
