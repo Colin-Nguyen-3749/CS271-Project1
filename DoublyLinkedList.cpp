@@ -42,6 +42,7 @@ template <typename T>
 	// fromPtr = points to old list; toPtr = points to new list
 	Node *fromPtr;
 	Node *toPtr;
+	Node *thisPtr;
 
 	// If myList is just empty, return an empty doubly linked list constructor
 	if ( mylist.head == NULL ) {
@@ -63,7 +64,7 @@ template <typename T>
 	toPtr = head;
 	// create a new node after the head and move toPtr there
 	//toPtr->next = new Node; MISTAKE
-	size++;
+	//size++;
 	//toPtr = toPtr->next; MISTAKE
 	toPtr->prev = nullptr; //set prev pointer for the first node to nullptr
 
@@ -74,14 +75,16 @@ template <typename T>
 	fromPtr = fromPtr->next;  // move to the next node of myList
 	while ( fromPtr != NULL ) {
 		toPtr->next = new Node;
-		toPtr->prev = toPtr; // set prev to current node before moving on
+		thisPtr = toPtr;
+		//toPtr->prev = toPtr; // set prev to current node before moving on
 		toPtr = toPtr->next;
+		toPtr->prev = thisPtr; // new
 		toPtr->val = fromPtr->val;
 		fromPtr = fromPtr->next;
 		size++;
 	}
 	toPtr->next = nullptr; // set last node next to nullptr
-	tail->prev = toPtr; // set this node that toPtr is pointing at as the previous node to tail
+	tail->prev = thisPtr; // set this node that thisPtr (toPtr) is pointing at as the previous node to tail
 }
 
 //===================================================
@@ -116,6 +119,7 @@ DoublyLinkedList<T>	DoublyLinkedList<T>::operator=	( const DoublyLinkedList<T> &
 	// fromPtr = points to old list; toPtr = points to new list
 	Node *fromPtr;
 	Node *toPtr;
+	Node *thisPtr;
 
 	// If myList is just empty, return an empty doubly linked list constructor
 	if ( mylist.head == NULL ) {
@@ -145,13 +149,15 @@ DoublyLinkedList<T>	DoublyLinkedList<T>::operator=	( const DoublyLinkedList<T> &
 	fromPtr = fromPtr->next;  // move to the next node of myList
 	while ( fromPtr != NULL ) {
 		toPtr->next = new Node;
-		toPtr->prev = toPtr; // set prev pointer to current node before moving on
+		//toPtr->prev = toPtr; // set prev pointer to current node before moving on
+		thisPtr = toPtr;
 		toPtr = toPtr->next;
+		toPtr->prev = thisPtr;
 		toPtr->val = fromPtr->val;
 		fromPtr = fromPtr->next;
 	}
 	toPtr->next = nullptr; // set last node next to nullptr
-	tail->prev = toPtr; // set this node that toPtr is pointing at as the previous node to tail
+	tail->prev = thisPtr; // set this node that toPtr is pointing at as the previous node to tail
 
 }
 
@@ -170,8 +176,9 @@ void 		DoublyLinkedList<T>::append	( const T &item )
 {
 	// create a new node
 	Node *qtr = new Node;
+	Node *thisPtr;
 	qtr->next = nullptr;
-	qtr->prev = nullptr;
+	//qtr->prev = nullptr;
 	// have qtr point to the end of the list (qtr)
 	//tail = qtr;
 	//qtr->prev = nullptr; // since qtr is the end of the llist, have it point to nullptr
@@ -193,9 +200,13 @@ void 		DoublyLinkedList<T>::append	( const T &item )
 		ptr->next = qtr;
 		*/
 		//Node *ptr = tail;
-		tail->next = qtr;
-		qtr->prev = tail;
-		tail = qtr;
+
+
+		// Start at the end because doubly linked lists have tails
+		tail->next = qtr; // Set the old tail to be next to the new node
+
+		qtr->prev = tail; // Have the new node have a prev pointing at the old tail
+		tail = qtr; // Set new tail to new node - but what about the old tail? 
 /*
 		ptr = tail->prev;
 		//delete tail; ////////////////////////////////////////////////////////////////
@@ -317,7 +328,7 @@ void		DoublyLinkedList<T>::remove	( int index )
 // This will combine the two capacities of the lists 
 // as well as their values into a new list. 
 // PARAMETERS:
-// two list of items										// re-look over this one
+// two list of items										// is this fine the way it is? We're creating a new merged list, so we 
 // RETURN VALUE:
 // a merged list of the two input lists
 //===================================================
@@ -328,6 +339,7 @@ DoublyLinkedList<T> DoublyLinkedList<T>::operator+	( const DoublyLinkedList<T> &
 	
 	Node *fromPtr;
 	Node *toPtr;
+	Node *thisPtr;
 
 	//Node *tracker = head;
 
@@ -336,15 +348,22 @@ DoublyLinkedList<T> DoublyLinkedList<T>::operator+	( const DoublyLinkedList<T> &
 		fromPtr = mylist.head;
 		merge.head = new Node;
 		toPtr = merge.head;
+		toPtr->prev = nullptr; //new
+		toPtr->next = merge.tail; // new
 	} else {
 		merge.head = new Node;
 		toPtr = merge.head;
+		toPtr->prev = nullptr;
 		
 		toPtr->val = fromPtr->val;
 		fromPtr = fromPtr->next;
 		while ( fromPtr != NULL ) {
 			toPtr->next = new Node;
+			//toPtr->prev = toPtr; // Am I making the prev pointer correctly? I want to set prev to the current pointer before moving on
+			thisPtr = toPtr;
 			toPtr = toPtr->next;
+			toPtr->prev = thisPtr;
+			merge.tail = toPtr; // Does this make every node a tail pointer? 
 			toPtr->val = fromPtr->val;
 			fromPtr = fromPtr->next;
 		}
@@ -357,11 +376,17 @@ DoublyLinkedList<T> DoublyLinkedList<T>::operator+	( const DoublyLinkedList<T> &
 	} else {
 		toPtr->next = new Node;
 		toPtr = toPtr->next;
+		toPtr->prev = merge.tail; // new 
+
 		toPtr->val = fromPtr->val;
 		fromPtr = fromPtr->next;
 		while ( fromPtr != NULL ) {
 			toPtr->next = new Node;
+			//toPtr->prev = toPtr; //new 
+			thisPtr = toPtr;
 			toPtr = toPtr->next;
+			toPtr->prev = thisPtr;
+			merge.tail = toPtr;
 			toPtr->val = fromPtr->val;
 			fromPtr = fromPtr->next;
 		}
