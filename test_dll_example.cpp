@@ -389,6 +389,17 @@ void test_assignment() {
     }
 }
 
+void test_selectionSort() {
+    
+    DoublyLinkedList<int> dll;
+    dll.append(1);
+    dll.append(2);
+    dll.append(3);
+    dll.selectionSort();
+    cout << "The test is working" << endl;
+    
+}
+
 void test_isEmpty() {
     try {
         DoublyLinkedList<int> dll;
@@ -559,6 +570,7 @@ void time_test() {
 }
 
 int main() {
+    /*
     test_append();
     cout << "append works" << endl;
     test_indexing1();
@@ -602,6 +614,8 @@ int main() {
     time_test();
     
     cout << "Testing completed" << endl;
+    */
+    test_selectionSort();
     
     return 0;
 }

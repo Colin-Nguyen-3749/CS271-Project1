@@ -470,3 +470,57 @@ void		DoublyLinkedList<T>::clear		( void )
 
 
 //===================================================
+// Selection Sort
+// Using selection sort, the input list will be 
+// sorted.
+// PARAMETERS:
+// none
+// RETURN VALUE:
+// none
+//===================================================
+template <typename T>
+void		DoublyLinkedList<T>::selectionSort	( void )
+{
+	Node *indexPtr; // keeps track of index
+	indexPtr = head; // set pointer to head
+	int difference = 0; // keeps track of how much indexPtr should go for swapping
+	Node *minPtr; // keeps track of the minimum of the shrinking list
+
+	T swap; //This value saves whatever's inside a node that needs to be swapped
+	int n = length(); // get the length of the list
+	int minIndex = 0; // numerically keeps track of where the minPtr should go
+
+	for (int i = 0; i < n-1; i++) { //outer loop goes through each list item one by one
+		minIndex = i;
+		if (i == 0) {
+			minPtr = head; // if we're already at the start of the list, do nothing
+		} else {
+			minPtr = minPtr->next; // if we don't want to be at the start of the list, go to the next node
+		}
+		indexPtr = minPtr; 
+		indexPtr = indexPtr->next; // set the indexPtr to be right next to the minPtr
+
+		for (int j = i+1; j < n; j++) { // inner loop looks for the minimum value in list[i+1:n]
+			indexPtr = indexPtr->next;
+			if ((indexPtr->val) < (minPtr->val)) {
+				minIndex = j; // keeps track of where the smallest value is in list[i+1:n]
+			}
+		}
+
+		indexPtr = indexPtr->next; // once out of the loop, don't forget to take care of one last node
+		if ((indexPtr->val) < (minPtr->val)) {
+			minIndex = n-1;
+		}
+		if (minIndex != i) {
+			difference = minIndex-i; // find how many nodes are between the minPtr and the indexPtr
+			indexPtr = minPtr;
+			for (int k = i; k < i+difference; k++) { // really tedious way to move our indexPtr where we need it to be
+				indexPtr = indexPtr->next;
+			}
+			swap = minPtr->val;
+			minPtr->val = indexPtr->val;
+			indexPtr->val = swap;
+		}
+	}
+	
+}
