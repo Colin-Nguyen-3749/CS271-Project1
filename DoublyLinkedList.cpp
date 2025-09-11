@@ -58,7 +58,7 @@ template <typename T>
 
 	// Create a new head and tail pointing towards the list that we created to copy stuff to
 	head = new Node;
-	tail = new Node;
+	//tail = nullptr;
 	
 	// Set toPtr to the head of the newly created doubly linked list
 	toPtr = head;
@@ -79,12 +79,16 @@ template <typename T>
 		//toPtr->prev = toPtr; // set prev to current node before moving on
 		toPtr = toPtr->next;
 		toPtr->prev = thisPtr; // new
+
 		toPtr->val = fromPtr->val;
 		fromPtr = fromPtr->next;
 		size++;
 	}
+	
+
 	toPtr->next = nullptr; // set last node next to nullptr
-	tail->prev = thisPtr; // set this node that thisPtr (toPtr) is pointing at as the previous node to tail
+	thisPtr = toPtr;
+	tail = thisPtr; // set this node that thisPtr (toPtr) is pointing at as the previous node to tail
 }
 
 //===================================================
@@ -113,9 +117,6 @@ template <typename T>
 template <typename T>
 DoublyLinkedList<T>	DoublyLinkedList<T>::operator=	( const DoublyLinkedList<T> &mylist )
 {
-	// This is exactly the same as the copy constructor because I was told that 
-	// the assignment operator and copy constructor are exactly the same in code in CS 173
-
 	// fromPtr = points to old list; toPtr = points to new list
 	Node *fromPtr;
 	Node *toPtr;
@@ -125,40 +126,46 @@ DoublyLinkedList<T>	DoublyLinkedList<T>::operator=	( const DoublyLinkedList<T> &
 	if ( mylist.head == NULL ) {
 		head = nullptr;
 		tail = nullptr;
-		return head;
+		size = 0;
 	}
 
+	size = 0;
 	// Set the fromPtr to the head of myList
 	fromPtr = mylist.head;
 
 	// Create a new head and tail pointing towards the list that we created to copy stuff to
 	head = new Node;
-	tail = new Node;
+	//tail = nullptr;
 	
 	// Set toPtr to the head of the newly created doubly linked list
 	toPtr = head;
 	// create a new node after the head and move toPtr there
-	toPtr->next = new Node;
-	toPtr = toPtr->next;
+	//toPtr->next = new Node; MISTAKE
+	//size++;
+	//toPtr = toPtr->next; MISTAKE
 	toPtr->prev = nullptr; //set prev pointer for the first node to nullptr
 
-	fromPtr = fromPtr->next; //move fromPtr to the next node that actually has a value 
+	//fromPtr = fromPtr->next; //move fromPtr to the next node that actually has a value 
 
 	toPtr->val = fromPtr->val; // copy the value from myList to new list
 
 	fromPtr = fromPtr->next;  // move to the next node of myList
 	while ( fromPtr != NULL ) {
 		toPtr->next = new Node;
-		//toPtr->prev = toPtr; // set prev pointer to current node before moving on
 		thisPtr = toPtr;
+		//toPtr->prev = toPtr; // set prev to current node before moving on
 		toPtr = toPtr->next;
-		toPtr->prev = thisPtr;
+		toPtr->prev = thisPtr; // new
+
 		toPtr->val = fromPtr->val;
 		fromPtr = fromPtr->next;
+		size++;
 	}
-	toPtr->next = nullptr; // set last node next to nullptr
-	tail->prev = thisPtr; // set this node that toPtr is pointing at as the previous node to tail
+	
 
+	toPtr->next = nullptr; // set last node next to nullptr
+	thisPtr = toPtr;
+	tail = thisPtr; // set this node that thisPtr (toPtr) is pointing at as the previous node to tail
 }
 
 //===================================================
