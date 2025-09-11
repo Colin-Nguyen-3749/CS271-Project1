@@ -500,14 +500,13 @@ void		DoublyLinkedList<T>::selectionSort	( void )
 		indexPtr = minPtr; 
 		indexPtr = indexPtr->next; // set the indexPtr to be right next to the minPtr
 
-		for (int j = i+1; j < n; j++) { // inner loop looks for the minimum value in list[i+1:n]
-			indexPtr = indexPtr->next;
+		for (int j = i+1; j < n-1; j++) { // inner loop looks for the minimum value in list[i+1:n]
 			if ((indexPtr->val) < (minPtr->val)) {
 				minIndex = j; // keeps track of where the smallest value is in list[i+1:n]
 			}
-		}
+			indexPtr = indexPtr->next;
 
-		indexPtr = indexPtr->next; // once out of the loop, don't forget to take care of one last node
+		}
 		if ((indexPtr->val) < (minPtr->val)) {
 			minIndex = n-1;
 		}

@@ -392,11 +392,21 @@ void test_assignment() {
 void test_selectionSort() {
     
     DoublyLinkedList<int> dll;
+    dll.append(5);
+    dll.append(3);
     dll.append(1);
     dll.append(2);
-    dll.append(3);
+    dll.append(4);
+    dll.append(0);
     dll.selectionSort();
     cout << "The test is working" << endl;
+
+    string dll_str = dll.to_string();
+    if (dll_str != "0 1 2 3 4 5") {
+        cout << "You fatty" << dll_str << endl;
+    }
+
+
     
 }
 
@@ -616,6 +626,7 @@ int main() {
     cout << "Testing completed" << endl;
     */
     test_selectionSort();
+    cout << "selection sort" << endl;
     
     return 0;
 }
