@@ -489,30 +489,34 @@ void		DoublyLinkedList<T>::selectionSort	( void )
 	T swap; //This value saves whatever's inside a node that needs to be swapped
 	int n = length(); // get the length of the list
 	int minIndex = 0; // numerically keeps track of where the minPtr should go
+	int minValue = 0;
 
 	for (int i = 0; i < n-1; i++) { //outer loop goes through each list item one by one
 		minIndex = i;
 		if (i == 0) {
 			minPtr = head; // if we're already at the start of the list, do nothing
+			minValue = minPtr->val;
 		} else {
 			minPtr = minPtr->next; // if we don't want to be at the start of the list, go to the next node
-			//minIndex++;
+			minValue = minPtr->val;
 		}
 		indexPtr = minPtr; 
 		indexPtr = indexPtr->next; // set the indexPtr to be right next to the minPtr
 
 		for (int j = i+1; j < n-1; j++) { // inner loop looks for the minimum value in list[i+1:n]
-			if ((indexPtr->val) < (minPtr->val)) {
+			if ((indexPtr->val) < (minValue)) {
 				minIndex = j; // keeps track of where the smallest value is in list[i+1:n]
+				minValue = indexPtr->val;
 			}
 			indexPtr = indexPtr->next;
 
 		}
-		if ((indexPtr->val) < (minPtr->val)) {
+		if ((indexPtr->val) < (minValue)) {
 			minIndex = n-1;
+			minValue = indexPtr->val;
 		}
 		if (minIndex != i) {
-			difference = minIndex-i; // find how many nodes are between the minPtr and the indexPtr
+			difference = abs(minIndex-i); // find how many nodes are between the minPtr and the indexPtr
 			indexPtr = minPtr;
 			for (int k = i; k < i+difference; k++) { // really tedious way to move our indexPtr where we need it to be
 				indexPtr = indexPtr->next;

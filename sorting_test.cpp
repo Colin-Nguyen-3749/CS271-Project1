@@ -22,19 +22,19 @@ using std::string;
 void test_selectionSort() {
     
     DoublyLinkedList<int> dll;
-    dll.append(5);
-    dll.append(1);
-    dll.append(2);
+    dll.append(123);
+    dll.append(23);
+    dll.append(0);
+    dll.append(93);
+    dll.append(4);
+    dll.append(50);
     dll.append(14);
-    dll.append(8);
-    dll.append(70);
-    dll.append(60);
-    dll.append(100);
+    dll.append(16);
     dll.selectionSort();
     cout << "The test is working" << endl;
 
     string dll_str = dll.to_string();
-    if (dll_str == "1 2 5 8 14 60 70 100") {
+    if (dll_str == "0 4 14 16 23 50 93 123") {
         cout << "Yippee!!! " << dll_str << endl;
     } else {
         cout << "bum bidi bidi bidi bum bum"  << dll_str << endl;
