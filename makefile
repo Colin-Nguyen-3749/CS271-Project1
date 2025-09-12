@@ -1,5 +1,7 @@
-test: test_dll_example.o
-	g++ -o test test_dll_example.o
+test: sorting_test.o
+	g++ -o test sorting_test.o
 	
-test_dll_example.o: test_dll_example.cpp DoublyLinkedList.h DoublyLinkedList.cpp
-	g++ -g -c test_dll_example.cpp
+sorting_test.o: sorting_test.cpp DoublyLinkedList.h DoublyLinkedList.cpp
+	g++ -g -c sorting_test.cpp
+
+

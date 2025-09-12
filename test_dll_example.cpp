@@ -393,21 +393,22 @@ void test_selectionSort() {
     
     DoublyLinkedList<int> dll;
     dll.append(5);
-    dll.append(3);
     dll.append(1);
     dll.append(2);
-    dll.append(4);
-    dll.append(0);
+    dll.append(14);
+    dll.append(8);
+    dll.append(70);
+    dll.append(60);
+    dll.append(100);
     dll.selectionSort();
     cout << "The test is working" << endl;
 
     string dll_str = dll.to_string();
-    if (dll_str != "0 1 2 3 4 5") {
-        cout << "You fatty" << dll_str << endl;
+    if (dll_str == "1 2 5 8 14 60 70 100") {
+        cout << "Yippee!!! " << dll_str << endl;
+    } else {
+        cout << "you fatty "  << dll_str << endl;
     }
-
-
-    
 }
 
 void test_isEmpty() {

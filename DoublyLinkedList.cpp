@@ -496,6 +496,7 @@ void		DoublyLinkedList<T>::selectionSort	( void )
 			minPtr = head; // if we're already at the start of the list, do nothing
 		} else {
 			minPtr = minPtr->next; // if we don't want to be at the start of the list, go to the next node
+			//minIndex++;
 		}
 		indexPtr = minPtr; 
 		indexPtr = indexPtr->next; // set the indexPtr to be right next to the minPtr
