@@ -540,3 +540,34 @@ void		DoublyLinkedList<T>::selectionSort	( void )
 // RETURN VALUE:
 // none
 //===================================================
+template <typename T>
+void		DoublyLinkedList::insertionSort ( void ) 
+{
+	int n = length();
+	T itemToInsert;
+	T keysIndex;
+	int index = 0;
+	Node *ptr;
+
+	for (insertIndex = 1; insertIndex < n; insertIndex++) {
+		ptr = head;
+		for (i = 0; i < insertIndex; i++) {
+			ptr = ptr->next; 
+		}
+		itemToInsert = ptr->val;
+		index = insertIndex - 1;
+		keysIndex = ptr->prev->val;
+		while (index >= 0 && keysIndex > itemToInsert) {
+			ptr->val = keysIndex;
+			index--;
+			ptr = ptr->prev;
+			keysIndex = ptr->val;
+			ptr->val = keysIndex;
+		}
+		ptr = head;
+		while (ptr->val < itemToInsert) {
+			ptr = ptr->next;
+		}
+		ptr->val = itemToInsert;
+	}
+}

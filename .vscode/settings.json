@@ -27,6 +27,7 @@
         "*.rexx": "rexx",
         "iostream": "cpp",
         "ostream": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "string_view": "cpp"
     }
 }

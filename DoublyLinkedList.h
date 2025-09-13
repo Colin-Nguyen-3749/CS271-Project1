@@ -33,6 +33,7 @@ class DoublyLinkedList
 	bool					isEmpty					(  ) const;
 	void					clear					(  );
 	void 					selectionSort			(  );
+	void 					insertionSort			(  );
 	// Returns a string representation of the list to make testing easier
 	std::string 			to_string				(  ) const {
 		std::stringstream s;
