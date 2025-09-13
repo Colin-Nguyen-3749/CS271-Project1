@@ -526,5 +526,17 @@ void		DoublyLinkedList<T>::selectionSort	( void )
 			indexPtr->val = swap;
 		}
 	}
+	indexPtr->next = nullptr;
+	tail = indexPtr;
 	
 }
+
+//===================================================
+// Insertion Sort
+// Using selection sort, the input list will be 
+// sorted.
+// PARAMETERS:
+// none
+// RETURN VALUE:
+// none
+//===================================================
