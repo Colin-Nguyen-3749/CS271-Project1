@@ -541,33 +541,44 @@ void		DoublyLinkedList<T>::selectionSort	( void )
 // none
 //===================================================
 template <typename T>
-void		DoublyLinkedList::insertionSort ( void ) 
+void		DoublyLinkedList<T>::insertionSort ( void ) 
 {
 	int n = length();
-	T itemToInsert;
-	T keysIndex;
-	int index = 0;
-	Node *ptr;
+	Node *indexTracker = head; // keeps track of where the index is (INCREMENTING ONLY)
+	Node *ptr = head; // ptr starts off as indexTracker but will always stay one node 
+					  // ahead of qtr for comparison purposes
+	Node *qtr = head; // this points to the node whose value we're comparing ptr's value to
+	T itemToInsert; // everytime we go to a new item, we hold onto it as we go back to each node and compare
+	int index = 0; // this makes sure we don't go past the head of the list in our while loop
+	T keysIndex; // this holds the value of the node qtr points to, so that we can compare it to ptr's node
 
-	for (insertIndex = 1; insertIndex < n; insertIndex++) {
-		ptr = head;
-		for (i = 0; i < insertIndex; i++) {
-			ptr = ptr->next; 
-		}
-		itemToInsert = ptr->val;
-		index = insertIndex - 1;
-		keysIndex = ptr->prev->val;
-		while (index >= 0 && keysIndex > itemToInsert) {
-			ptr->val = keysIndex;
+	for ( int i = 1; i < n; i++ ) {
+		
+		indexTracker = indexTracker->next; // indexTracker and ptr always start off at the same node
+		ptr = ptr->next;
+
+		itemToInsert = indexTracker->val;
+		qtr = indexTracker->prev; // qtr will always be to the left of ptr (they're friends)
+		index = i - 1;
+		keysIndex = qtr->val;
+
+		while ( index >= 0 && keysIndex > itemToInsert ) {
+			ptr->val = qtr->val; // move values up a node to make room for the comparison value
 			index--;
-			ptr = ptr->prev;
-			keysIndex = ptr->val;
-			ptr->val = keysIndex;
+			keysIndex = qtr->val; // update keysIndex
+			if (qtr != head) {
+				qtr = qtr->prev;
+				ptr = ptr->prev; 
+				// move our two comparision pointers back one node (unless they're already at the head)
+			}
 		}
-		ptr = head;
-		while (ptr->val < itemToInsert) {
-			ptr = ptr->next;
+
+		// this is us inserting our value after we've found the correct place to insert it
+		if (qtr = head) {
+			qtr->val = itemToInsert;
+		} else {
+			qtr->next->val = itemToInsert;
 		}
-		ptr->val = itemToInsert;
+		ptr = indexTracker; // move ptr back to indexTracker so that we don't lose our place in the list
 	}
 }

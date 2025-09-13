@@ -65,12 +65,64 @@ void ss_float() {
     }
 }
 
+// SS = selection sort; ss_float = testing selection sort for float again THIS IS NOT WORKING
+void ss_float2() {
+    
+    DoublyLinkedList<float> dll;
+    dll.append(1);
+    dll.append(1.8);
+    dll.append(1.5);
+    dll.append(1.2);
+    dll.append(1.4);
+    dll.append(1.3);
+    dll.append(1.3);
+    dll.append(1.3);
+    dll.selectionSort();
+    cout << "The test is workingsgd" << endl;
+
+    string dll_str = dll.to_string();
+    if (dll_str == "1.2 1.3 1.31 1.311 1.4 .15 1.8 1.9") {
+        cout << "Yippee!!! " << dll_str << endl;
+    } else {
+        cout << "Try again "  << dll_str << endl;
+    }
+}
+
+// is_int = insertion sort for integers
+void is_int() {
+
+    DoublyLinkedList<float> dll;
+    dll.append(5);
+    dll.append(3);
+    dll.append(1);
+    dll.append(3);
+    dll.append(2);
+    dll.append(0);
+    dll.append(7);
+    dll.append(6);
+    dll.insertionSort();
+    cout << "The test is working" << endl;
+
+    string dll_str = dll.to_string();
+    if (dll_str == "0 1 2 3 4 5 6 7") {
+        cout << "Yippee!!! " << dll_str << endl;
+    } else {
+        cout << "Try again"  << dll_str << endl;
+    }
+}
+
 int main() {
     ss_int();
     cout << "Testing selection sort for integers is working" << endl;
 
     ss_float();
     cout << "Testing selection sort for float is working" << endl;
+
+    ss_float2();
+    cout << "Testing selection sort for float is working again" << endl;
+
+    is_int();
+    cout << "Testing insertion sort for in is working" << endl;
 
     return 0;
 }
