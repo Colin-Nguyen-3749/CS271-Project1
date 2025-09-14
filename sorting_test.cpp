@@ -92,14 +92,16 @@ void ss_float2() {
 void is_int() {
 
     DoublyLinkedList<float> dll;
+    dll.append(0);
+    dll.append(4);
+    dll.append(2);
+    dll.append(6);
+    dll.append(7);
+    dll.append(1);
     dll.append(5);
     dll.append(3);
-    dll.append(1);
-    dll.append(3);
-    dll.append(2);
-    dll.append(0);
-    dll.append(7);
-    dll.append(6);
+    cout << "The test is working" << endl;
+
     dll.insertionSort();
     cout << "The test is working" << endl;
 
@@ -107,7 +109,7 @@ void is_int() {
     if (dll_str == "0 1 2 3 4 5 6 7") {
         cout << "Yippee!!! " << dll_str << endl;
     } else {
-        cout << "Try again"  << dll_str << endl;
+        cout << "Try again "  << dll_str << endl;
     }
 }
 

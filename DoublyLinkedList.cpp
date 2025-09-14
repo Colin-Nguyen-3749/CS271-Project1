@@ -183,7 +183,7 @@ void 		DoublyLinkedList<T>::append	( const T &item )
 {
 	// create a new node
 	Node *qtr = new Node;
-	Node *thisPtr;
+	Node *thisPtr = head;
 	qtr->next = nullptr;
 	//qtr->prev = nullptr;
 	// have qtr point to the end of the list (qtr)
@@ -196,34 +196,23 @@ void 		DoublyLinkedList<T>::append	( const T &item )
 	if ( head == nullptr ) {
 		//special case of empty list
 		head = qtr;
+		head->prev = nullptr;
 		tail = qtr;
+		tail->next = nullptr;
 	} else {
-		//not empty list	
-		/*
-		Node *ptr = head;
-		while ( ptr->next != nullptr ) {
-			ptr = ptr->next;
+
+		while (thisPtr->next != nullptr) {
+			thisPtr = thisPtr->next;
 		}
-		ptr->next = qtr;
-		*/
-		//Node *ptr = tail;
-
-
+		
+		thisPtr->next = qtr;
+		qtr->prev = thisPtr;
+		tail = qtr;
 		// Start at the end because doubly linked lists have tails
-		tail->next = qtr; // Set the old tail to be next to the new node
+		//tail->next = qtr; // Set the old tail to be next to the new node
 
-		qtr->prev = tail; // Have the new node have a prev pointing at the old tail
-		tail = qtr; // Set new tail to new node - but what about the old tail? 
-/*
-		ptr = tail->prev;
-		//delete tail; ////////////////////////////////////////////////////////////////
-		ptr->next = new Node;
-		ptr = ptr->next;
-		//ptr->next = qtr;
-		ptr = ptr->next;
-		ptr->next = nullptr;
-		tail->prev = ptr;
-*/
+		//qtr->prev = tail; // Have the new node have a prev pointing at the old tail
+		//tail = qtr; // Set new tail to new node - but what about the old tail? 
 	}
 }
 
@@ -543,42 +532,49 @@ void		DoublyLinkedList<T>::selectionSort	( void )
 template <typename T>
 void		DoublyLinkedList<T>::insertionSort ( void ) 
 {
-	int n = length();
-	Node *indexTracker = head; // keeps track of where the index is (INCREMENTING ONLY)
-	Node *ptr = head; // ptr starts off as indexTracker but will always stay one node 
-					  // ahead of qtr for comparison purposes
-	Node *qtr = head; // this points to the node whose value we're comparing ptr's value to
-	T itemToInsert; // everytime we go to a new item, we hold onto it as we go back to each node and compare
-	int index = 0; // this makes sure we don't go past the head of the list in our while loop
-	T keysIndex; // this holds the value of the node qtr points to, so that we can compare it to ptr's node
+	Node *ptr = head->next;
+	Node *indexPtr = ptr;
+	Node *qtr = head;
+	T item;
+	T swap;
 
-	for ( int i = 1; i < n; i++ ) {
+	while ( indexPtr->next != NULL ) {
+		item = indexPtr->val;
+
+		while (qtr->prev != nullptr && qtr->val > item) {
+			swap = ptr->val;
+			ptr->val = qtr->val;
+			qtr->val = swap;
+
+			qtr = qtr->prev;
+			ptr = ptr->prev;
+		}
+
+		if ((qtr->prev == nullptr) && (qtr->val > item)) {
+			swap = ptr->val;
+			ptr->val = qtr->val;
+			qtr->val = swap;
+		}
 		
-		indexTracker = indexTracker->next; // indexTracker and ptr always start off at the same node
-		ptr = ptr->next;
+		indexPtr = indexPtr->next;
+		ptr = indexPtr;
+		qtr = indexPtr->prev;
+	}
 
-		itemToInsert = indexTracker->val;
-		qtr = indexTracker->prev; // qtr will always be to the left of ptr (they're friends)
-		index = i - 1;
-		keysIndex = qtr->val;
+	item = indexPtr->val;
 
-		while ( index >= 0 && keysIndex > itemToInsert ) {
-			ptr->val = qtr->val; // move values up a node to make room for the comparison value
-			index--;
-			keysIndex = qtr->val; // update keysIndex
-			if (qtr != head) {
-				qtr = qtr->prev;
-				ptr = ptr->prev; 
-				// move our two comparision pointers back one node (unless they're already at the head)
-			}
-		}
+	while (qtr->prev != nullptr && qtr->val > item) {
+		swap = ptr->val;
+		ptr->val = qtr->val;
+		qtr->val = swap;
 
-		// this is us inserting our value after we've found the correct place to insert it
-		if (qtr = head) {
-			qtr->val = itemToInsert;
-		} else {
-			qtr->next->val = itemToInsert;
-		}
-		ptr = indexTracker; // move ptr back to indexTracker so that we don't lose our place in the list
+		qtr = qtr->prev;
+		ptr = ptr->prev;
+	}
+
+	if ((qtr->prev == nullptr) && (qtr->val > item)) {
+		swap = ptr->val;
+		ptr->val = qtr->val;
+		qtr->val = swap;
 	}
 }
