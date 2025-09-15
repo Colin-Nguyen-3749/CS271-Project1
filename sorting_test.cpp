@@ -65,6 +65,31 @@ void ss_float() {
     }
 }
 
+// SS = selection sort; ss_long = testing selection sort for bigger numbers
+void ss_long() {
+    //-344375293 778467649 -1857762543 632266393 1186462265 -808487409 1160593853 888941915 733190708 778648453
+    DoublyLinkedList<int> dll;
+    dll.append(-344375293);
+    dll.append(778467649);
+    dll.append(-1857762543);
+    dll.append(632266393);
+    dll.append(1186462265);
+    dll.append(-808487409);
+    dll.append(1160593853);
+    dll.append(888941915);
+    dll.append(733190708);
+    dll.append(778648453);
+    //dll = [-344375293, 778467649, , 632266393, 1186462265, -808487409, 1160593853, 888941915, 733190708, 778648453];
+    dll.selectionSort();
+    cout << "The test is working" << endl;
+
+    string dll_str = dll.to_string();
+    if (dll_str == "-1857762543 -808487409 -344375293 632266393 733190708 778467649 778648453 888941915 1160593853 1186462265") {
+        cout << "Yippee!!! " << dll_str << endl;
+    } else {
+        cout << "Try again"  << dll_str << endl;
+    }
+}
 // SS = selection sort; ss_float = testing selection sort for float again THIS IS NOT WORKING
 void ss_float2() {
     
@@ -124,7 +149,8 @@ void ms_int() {
     dll.append(7);
     dll.append(1);
     dll.append(5);
-    dll.append(3);
+    dll.append(3); //-344375293 778467649 -1857762543 632266393 1186462265 -808487409 1160593853 888941915 733190708 778648453
+
     cout << "The test is working" << endl;
 
     dll.mergeSort();
@@ -153,6 +179,8 @@ int main() {
 
     ms_int();
     cout << "Testing merge sort for in is working" << endl;
+
+    ss_long();
 
     return 0;
 }
