@@ -9,6 +9,7 @@
 
 #include "DoublyLinkedList.h"
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 //===================================================
@@ -460,8 +461,9 @@ void		DoublyLinkedList<T>::clear		( void )
 
 //===================================================
 // Selection Sort
-// Using selection sort, the input list will be 
-// sorted.
+// This searches for the min value in the list[i:n]
+// and once found, is added to the sorted side to the
+// left of i, which is incremented afterwards. 
 // PARAMETERS:
 // none
 // RETURN VALUE:
@@ -522,8 +524,9 @@ void		DoublyLinkedList<T>::selectionSort	( void )
 
 //===================================================
 // Insertion Sort
-// Using selection sort, the input list will be 
-// sorted.
+// For every item in the list, they will be swapped
+// with the item in front of them if it is less
+// until the right spot has been found.
 // PARAMETERS:
 // none
 // RETURN VALUE:
@@ -576,5 +579,137 @@ void		DoublyLinkedList<T>::insertionSort ( void )
 		swap = ptr->val;
 		ptr->val = qtr->val;
 		qtr->val = swap;
+	}
+}
+
+//===================================================
+// Merge Sort
+// Using merge sort, the input list will be 
+// sorted.
+// PARAMETERS:
+// none
+// RETURN VALUE:
+// none
+//===================================================
+template <typename T>
+void 		DoublyLinkedList<T>::mergeSort 	( void )
+{	
+	int n = length();
+	int q = n/2;
+	int p = 0;
+	int r = n;
+
+	mergeSortCall(p, r);
+}
+
+//===================================================
+// MergeCall
+// this just calls the merge function 
+// PARAMETERS:
+// none
+// RETURN VALUE:
+// none
+//===================================================
+template <typename T>
+void 		DoublyLinkedList<T>::mergeSortCall 	( int p, int r )
+{	
+	if ( p >= r ) {
+		return;
+	}
+	int n = length();
+	int q = floor((p+r)/2);
+
+	mergeSortCall(p, q);
+	mergeSortCall(q+1, r);
+	merge(p, q, n);
+}
+
+//===================================================
+// Merge 
+// combines left and right sublists
+// PARAMETERS:
+// none
+// RETURN VALUE:
+// none
+//===================================================
+template <typename T>
+void		DoublyLinkedList<T>::merge	( int p, int q, int r )
+{
+	DoublyLinkedList<T> leftSublist; // equivalent of left subarray 
+	DoublyLinkedList<T> rightSublist; // equivalent of right subarray
+	
+	Node *leftQtr; // setting the left node to the head of the left sublist
+	Node *rightPtr; // setting the right node to the head of the right sublist
+
+	leftSublist.head = new Node; 
+	rightSublist.head = new Node;
+	leftQtr = leftSublist.head;
+	rightPtr = rightSublist.head;
+	
+	Node *ptr = head; // ptr keeps track of the original list for the RIGHT sublist
+	Node *qtr = head; // qtr keeps track of the original list for the LEFT sublist
+
+	q = length()/2;
+	int L = q - p; // left index tracker // removed + 1 after the p
+	int R = r - q; // right index tracker
+
+	// move ptr to the halfway point of the list
+	for ( int k = 0; k < q; k++ ) {
+		ptr = ptr->next;
+	}
+
+	// copy all values in the first half of the list to the left sublist
+	for ( int i = 0; i < L-1; i++ ) {
+		cout << qtr->val << endl;
+		leftQtr->val = qtr->val;
+		leftQtr->next = new Node;
+		leftQtr = leftQtr->next;
+		qtr = qtr->next;
+	}
+	
+	// copy all values in the second half of the list to the right sublist
+	for ( int j = 0; j < R-1; j++ ) {
+		rightPtr->val = ptr->val;
+		rightPtr->next = new Node;
+		rightPtr = rightPtr->next;
+		ptr = ptr->next;
+	}
+
+	int i = 0;
+	int j = 0;
+	int k = p;
+
+	ptr = head; // ptr is now being used as an overall pointer, not just for the right sublist
+
+	rightPtr = rightSublist.head;
+	leftQtr = leftSublist.head; // reset both leftNode and rightNode pointers to the head
+
+	while ( i < L && j < R ) {
+		// if the item in the left sublist is less than the right sublist, copy that over to the ptr list
+		if (leftQtr->val <= rightPtr->val) {
+			ptr->val = leftQtr->val;
+			leftQtr = leftQtr->next;
+			i++;
+		} else {
+			// if the item in the right sublist is less than the left sublist, copy that over to the ptr list
+			ptr->val = rightPtr->val;
+			rightPtr = rightPtr->next;
+			j++;
+		}
+		ptr = ptr->next;
+	}
+
+	// handle any leftovers in the left or right sublist
+	while ( i < L ) {
+		ptr->val = leftQtr->val;
+		i++;
+		ptr = ptr->next;
+		leftQtr = leftQtr->next;
+	}
+	while ( j < R ) {
+		ptr->val = rightPtr->val;
+		j++;
+		ptr = ptr->next;
+		rightPtr = rightPtr->next;
 	}
 }

@@ -34,6 +34,9 @@ class DoublyLinkedList
 	void					clear					(  );
 	void 					selectionSort			(  );
 	void 					insertionSort			(  );
+	void 					mergeSort 				(  );
+	void 					mergeSortCall			( int p, int r );
+	void 					merge					( int p, int q, int r );
 	// Returns a string representation of the list to make testing easier
 	std::string 			to_string				(  ) const {
 		std::stringstream s;

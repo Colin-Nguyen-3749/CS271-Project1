@@ -113,6 +113,31 @@ void is_int() {
     }
 }
 
+// ms_int = merge sort for integers
+void ms_int() {
+
+    DoublyLinkedList<float> dll;
+    dll.append(0);
+    dll.append(4);
+    dll.append(2);
+    dll.append(6);
+    dll.append(7);
+    dll.append(1);
+    dll.append(5);
+    dll.append(3);
+    cout << "The test is working" << endl;
+
+    dll.mergeSort();
+    cout << "The test is working" << endl;
+
+    string dll_str = dll.to_string();
+    if (dll_str == "0 1 2 3 4 5 6 7") {
+        cout << "Yippee!!! " << dll_str << endl;
+    } else {
+        cout << "Try again "  << dll_str << endl;
+    }
+}
+
 int main() {
     ss_int();
     cout << "Testing selection sort for integers is working" << endl;
@@ -125,6 +150,9 @@ int main() {
 
     is_int();
     cout << "Testing insertion sort for in is working" << endl;
+
+    ms_int();
+    cout << "Testing merge sort for in is working" << endl;
 
     return 0;
 }
