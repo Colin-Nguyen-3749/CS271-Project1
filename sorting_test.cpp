@@ -422,6 +422,248 @@ void ss_1000_rev() {
     string dll_str = dll.to_string();
 }
 
+void ss_10000_rev() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("10000rev.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+void ss_100000_rev() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("100000rev.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+
+void ss_10_sort() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("10sort.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+void ss_100_sort() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("100sort.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+
+void ss_1000_sort() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("1000sort.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+void ss_10000_sort() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("10000sort.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+void ss_100000_sort() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("100000sort.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+
+void time_test() {
+    std::srand(std::time(0)); // seed random with current time
+    DoublyLinkedList<int> x;
+    // TO-DO: generate large list
+
+    int total = 0;
+    
+    auto begin = std::chrono::high_resolution_clock::now();
+    ss_10_sort();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 10.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_100_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 100.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_1000_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 1000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_10000_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 10000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_100000_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 100000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+}
+/*
 void time_test() {
     std::srand(std::time(0)); // seed random with current time
     DoublyLinkedList<int> x;
@@ -484,8 +726,22 @@ void time_test() {
     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     cout << "selection sort time for 1000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
     total+=elapsed.count();
-}
 
+    begin = std::chrono::high_resolution_clock::now();
+    ss_10000_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 10000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_100000_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 100000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+}
+*/
 
 
 
