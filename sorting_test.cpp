@@ -9,6 +9,8 @@
 // properly!
 //=========================================
 
+#include <fstream>
+#include <string>
 #include <iostream>
 #include <chrono>
 #include <stdexcept>
@@ -195,7 +197,80 @@ void qs_int() {
     }
 }
 
+// test selection sort with randomized data
+void selection_sort_randomized_data() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("10.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+    cout << dll_str << endl;
+
+    dll.clear();
+
+    std::ifstream inputFile100("100.in");
+
+    if (!inputFile)
+    {
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    long number2;
+    std::string strInput2{};
+
+    while (inputFile100 >> strInput2) {
+        //std::cout << strInput << '\n';
+        number2 = std::stoi(strInput2);
+        dll.append(number2);
+    }
+
+    dll.selectionSort();
+
+    dll_str = dll.to_string();
+    cout << dll_str << endl;
+    
+}
+
+void time_test() {
+    std::srand(std::time(0)); // seed random with current time
+    DoublyLinkedList<int> x;
+    // TO-DO: generate large list
+
+    int total = 0;
+    
+    auto begin = std::chrono::high_resolution_clock::now();
+    selection_sort_randomized_data();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "length time test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+}
+
+
+
 int main() {
+
+    // These are just my personal basic tests with just 7 or 8 basic ints or floats
     ss_int();
     cout << "Testing selection sort for integers is working" << endl;
 
@@ -216,5 +291,12 @@ int main() {
     qs_int();
     cout << "Testing quick sort is working" << endl;
 
+    //=========================================================
+    // 
+    selection_sort_randomized_data();
+
+
+
+    time_test();
     return 0;
 }

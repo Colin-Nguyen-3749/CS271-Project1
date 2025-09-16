@@ -836,7 +836,7 @@ void 		DoublyLinkedList<T>::quickSortCall 	( DoublyLinkedList<T>& myList, int p,
 
 //===================================================
 // partition
-// This function selects a pviot value, then using 
+// This function selects a pivot value, then using 
 // that pviot value it separates values that are 
 // lower on the left and those that are higher on the
 // right. 
