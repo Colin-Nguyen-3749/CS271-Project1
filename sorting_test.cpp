@@ -198,10 +198,10 @@ void qs_int() {
 }
 
 // test selection sort with randomized data
-void selection_sort_randomized_data() {
+void ss_10_ran() {
     
     DoublyLinkedList<long> dll;
-    std::ifstream inputFile("10.in");
+    std::ifstream inputFile("10ran.in");
 
     // If we couldn't open the output file stream for reading
     if (!inputFile)
@@ -224,31 +224,202 @@ void selection_sort_randomized_data() {
     dll.selectionSort();
 
     string dll_str = dll.to_string();
-    cout << dll_str << endl;
+}
 
-    dll.clear();
+void ss_100_ran() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("100ran.in");
 
-    std::ifstream inputFile100("100.in");
-
+    // If we couldn't open the output file stream for reading
     if (!inputFile)
     {
+        // Print an error and exit
         std::cerr << "Uh oh, this could not be opened for reading!\n";
     }
 
-    long number2;
-    std::string strInput2{};
+    // While there's still stuff left to read
 
-    while (inputFile100 >> strInput2) {
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
         //std::cout << strInput << '\n';
-        number2 = std::stoi(strInput2);
-        dll.append(number2);
+        number = std::stoi(strInput);
+        dll.append(number);
     }
 
+    
     dll.selectionSort();
 
-    dll_str = dll.to_string();
-    cout << dll_str << endl;
+    string dll_str = dll.to_string();
+}
+
+void ss_1000_ran() {
     
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("1000ran.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+void ss_10000_ran() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("10000ran.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+void ss_100000_ran() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("100000ran.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+void ss_10_rev() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("10rev.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+void ss_100_rev() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("100rev.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
+}
+
+void ss_1000_rev() {
+    
+    DoublyLinkedList<long> dll;
+    std::ifstream inputFile("1000rev.in");
+
+    // If we couldn't open the output file stream for reading
+    if (!inputFile)
+    {
+        // Print an error and exit
+        std::cerr << "Uh oh, this could not be opened for reading!\n";
+    }
+
+    // While there's still stuff left to read
+
+    long number;
+    std::string strInput{};
+    while (inputFile >> strInput) {
+        //std::cout << strInput << '\n';
+        number = std::stoi(strInput);
+        dll.append(number);
+    }
+
+    
+    dll.selectionSort();
+
+    string dll_str = dll.to_string();
 }
 
 void time_test() {
@@ -259,12 +430,62 @@ void time_test() {
     int total = 0;
     
     auto begin = std::chrono::high_resolution_clock::now();
-    selection_sort_randomized_data();
+    ss_10_ran();
     auto end = std::chrono::high_resolution_clock::now();
     auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "length time test took " << elapsed.count() << " nanoseconds" << endl;
+    cout << "selection sort time for 10.in RANDOM test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_100_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 100.in RANDOM test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_1000_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 1000.in RANDOM test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_10000_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 10000.in RANDOM test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_100000_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 100000.in RANDOM test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_10_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 10.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_100_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 100.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ss_1000_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "selection sort time for 1000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
     total+=elapsed.count();
 }
+
 
 
 
@@ -293,9 +514,10 @@ int main() {
 
     //=========================================================
     // 
-    selection_sort_randomized_data();
-
-
+    ss_10_ran();
+    ss_100_ran();
+    ss_1000_ran();
+    ss_10000_ran();
 
     time_test();
     return 0;
