@@ -154,11 +154,37 @@ void ms_int() {
     dll.append(7);
     dll.append(1);
     dll.append(5);
-    dll.append(3); //-344375293 778467649 -1857762543 632266393 1186462265 -808487409 1160593853 888941915 733190708 778648453
+    dll.append(3);
 
     cout << "The test is working" << endl;
 
     dll.mergeSort();
+    cout << "The test is working" << endl;
+
+    string dll_str = dll.to_string();
+    if (dll_str == "0 1 2 3 4 5 6 7") {
+        cout << "Yippee!!! " << dll_str << endl;
+    } else {
+        cout << "Try again "  << dll_str << endl;
+    }
+}
+
+// qs_int = merge sort for integers
+void qs_int() {
+
+    DoublyLinkedList<float> dll;
+    dll.append(0);
+    dll.append(4);
+    dll.append(2);
+    dll.append(6);
+    dll.append(7);
+    dll.append(1);
+    dll.append(5);
+    dll.append(3); 
+
+    cout << "The test is working" << endl;
+
+    dll.quickSort();
     cout << "The test is working" << endl;
 
     string dll_str = dll.to_string();
@@ -186,6 +212,9 @@ int main() {
     cout << "Testing merge sort for in is working" << endl;
 
     ss_long();
+
+    qs_int();
+    cout << "Testing quick sort is working" << endl;
 
     return 0;
 }

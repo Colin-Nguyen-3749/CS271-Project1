@@ -805,7 +805,6 @@ void		DoublyLinkedList<T>::quickSort	( void )
 		copyPtr = copyPtr->next;
 	}
 
-	
 	quickSortCall(myList, p, r);
 
     Node *src = myList.head;
@@ -829,7 +828,7 @@ template <typename T>
 void 		DoublyLinkedList<T>::quickSortCall 	( DoublyLinkedList<T>& myList, int p, int r ) 
 {
 	if (p < r) {
-		q = partition(myList, p, r);
+		int q = partition(myList, p, r);
 		quickSortCall(myList, p, q-1);
 		quickSortCall(myList, q+1, r);
 	}
@@ -846,40 +845,49 @@ void 		DoublyLinkedList<T>::quickSortCall 	( DoublyLinkedList<T>& myList, int p,
 // RETURN VALUE:
 // none
 //===================================================
-template <typenameT>
-void 		DoublyLinkedList<T>::partition	( DoublyLinkedList<T>& myList, int p, int r )
+template <typename T>
+int 		DoublyLinkedList<T>::partition	( DoublyLinkedList<T>& myList, int p, int r )
 {
 	Node *pivot = myList.head;
+
+	/*
+	Node *temp = myList.head;
+	while (temp != nullptr) {
+		cout << temp->val << endl;
+		temp = temp->next;
+	}
+	*/
+
 	for ( int i = 0; i < r; i++ ) {
 		pivot = pivot->next;
 	}
 
-	int i = p - 1;
+	int i = p - 1; // this is equal to -1 
 	T swap;
-
-	Node *jPtr = myList.head;
-	for ( int counter = 0; counter < j; counter++ ) {
-		jPtr = jPtr->next;
-	}
-
+	T swap2;
+	
 	Node *iPtr = myList.head;
-	for ( int counter2 = 0; counter2 < i; counter2++ ) {
-		iPtr = iPtr->next;
-	}
+	Node *jPtr = myList.head;
+	jPtr = iPtr->next;
 
-	for ( int j = p; j < r-1; j++ ) {
+	while ( jPtr->next != nullptr) {
 		if (jPtr->val <= pivot->val) {
 			i++;
+
+			// swap
 			swap = iPtr->val;
 			iPtr->val = jPtr->val;
 			jPtr->val = swap;
+			
+			// i++ equivalent
 			iPtr = iPtr->next;
 		}
 		jPtr = jPtr->next;
 	}
+	iPtr = iPtr->next;
 	swap2 = iPtr->val;
 	iPtr->val = jPtr->val;
 	jPtr->val = swap2;
-	i++;
+	return i++;
 }
 
