@@ -763,6 +763,10 @@ void		DoublyLinkedList<T>::merge	( DoublyLinkedList<T>& myList, int p, int q, in
 		k++;
 	}
 
+	leftSublist.clear();
+	rightSublist.clear();
+	leftSublist.head = new Node;
+	rightSublist.head = new Node;
 	leftQtr = leftSublist.head;
 	rightPtr = rightSublist.head;
 }
