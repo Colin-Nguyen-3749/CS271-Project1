@@ -37,8 +37,9 @@ class DoublyLinkedList
 	void 					mergeSort 				(  );
 	void 					mergeSortCall			( DoublyLinkedList<T>& myList, int p, int r );
 	void 					merge					( DoublyLinkedList<T>& myList, int p, int q, int r );
-//	void 					quickSort				( void );
-//	void 					quickSortCall			( const DoublyLinkedList<T>& myList, int p, int r );
+	void 					quickSort				( void );
+	void 					quickSortCall			( DoublyLinkedList<T>& myList, int p, int r );
+	void 					partition				( DoublyLinkedList<T>& myList, int p, int r );
 	// Returns a string representation of the list to make testing easier
 	std::string 			to_string				(  ) const {
 		std::stringstream s;

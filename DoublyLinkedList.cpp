@@ -639,7 +639,7 @@ void 		DoublyLinkedList<T>::mergeSort 	( void )
 // MergeCall
 // this just calls the merge function 
 // PARAMETERS:
-// none
+// a copy of the list, p (starting index), r (ending index)
 // RETURN VALUE:
 // none
 //===================================================
@@ -661,7 +661,7 @@ void 		DoublyLinkedList<T>::mergeSortCall 	( DoublyLinkedList<T>& myList, int p,
 // Merge 
 // combines left and right sublists
 // PARAMETERS:
-// none
+// a copy of the list, p (starting index), r (ending index)
 // RETURN VALUE:
 // none
 //===================================================
@@ -766,7 +766,6 @@ void		DoublyLinkedList<T>::merge	( DoublyLinkedList<T>& myList, int p, int q, in
 	leftQtr = leftSublist.head;
 	rightPtr = rightSublist.head;
 }
-/*
 
 //===================================================
 // Quick sort
@@ -779,35 +778,55 @@ void		DoublyLinkedList<T>::merge	( DoublyLinkedList<T>& myList, int p, int q, in
 //===================================================
 template <typename T>
 void		DoublyLinkedList<T>::quickSort	( void )
-{
-	DoublyLinkedList<T> myList;
-	Node *copyPtr;
-	Node *toPtr;
-	myList.head = new Node;
-	copyPtr = myList.head;
-	toPtr = head;
-
+{	
+	int n = length();
+	int q = n/2;
 	int p = 0;
-	int r = length();
-	for ( int i = 0; i < r; i++ ) {
-		copyPtr->val = toPtr->val;
-		copyPtr = copyPtr->next;
+	int r = n-1;
+	
+	DoublyLinkedList<T> myList;
+	myList.head = new Node;
+	Node *toPtr = myList.head;
+	Node *copyPtr = head;
+
+	Node *prevNode = nullptr;
+	while (copyPtr != nullptr) {
+		toPtr->val = copyPtr->val;
+		toPtr->prev = prevNode;
+
+		if (copyPtr->next != nullptr) {
+			toPtr->next = new Node;
+		} else {
+			toPtr->next = nullptr;
+		}
+
+		prevNode = toPtr;
 		toPtr = toPtr->next;
+		copyPtr = copyPtr->next;
 	}
 
-	quickSortCall(myList, p, q);
+	
+	quickSortCall(myList, p, r);
+
+    Node *src = myList.head;
+    Node *dst = head;
+    while (src != nullptr && dst != nullptr) {
+        dst->val = src->val;
+        src = src->next;
+        dst = dst->next;
+    }
 }
 //===================================================
 // Quick sort call
 // This is how I'm trying to implement the 
 // recursive calls
 // PARAMETERS:
-// none
+// a copy of the list, p (starting index), r (ending index)
 // RETURN VALUE:
 // none 
 //===================================================
 template <typename T>
-void 		DoublyLinkedList<T>::quickSortCall 	( const DoublyLinkedList<T>& myList, int p, int r ) 
+void 		DoublyLinkedList<T>::quickSortCall 	( DoublyLinkedList<T>& myList, int p, int r ) 
 {
 	if (p < r) {
 		q = partition(myList, p, r);
@@ -816,4 +835,34 @@ void 		DoublyLinkedList<T>::quickSortCall 	( const DoublyLinkedList<T>& myList, 
 	}
 }
 
-*/
+//===================================================
+// partition
+// This function selects a pviot value, then using 
+// that pviot value it separates values that are 
+// lower on the left and those that are higher on the
+// right. 
+// PARAMETERS:
+// a copy of the list, p (starting index), r (ending index)
+// RETURN VALUE:
+// none
+//===================================================
+template <typenameT>
+void 		DoublyLinkedList<T>::partition	( DoublyLinkedList<T>& myList, int p, int r )
+{
+	Node *pivot = myList.head;
+	for ( int i = 0; i < r; i++ ) {
+		pivot = pivot->next;
+	}
+
+	int i = p - 1;
+
+	Node *ptr = myList.head;
+	for ( int counter = 0; counter < j; counter++ ) {
+		
+	}
+
+	for ( int j = p; j < r-1; j++ ) {
+		
+	}
+}
+
