@@ -600,30 +600,32 @@ void 		DoublyLinkedList<T>::mergeSort 	( void )
 	int r = n-1;
 	
 	DoublyLinkedList<T> myList;
-myList.head = new Node;
-Node *toPtr = myList.head;
-Node *copyPtr = head;
+	myList.head = new Node;
+	Node *toPtr = myList.head;
+	Node *copyPtr = head;
 
-Node *prevNode = nullptr;
-while (copyPtr != nullptr) {
-    toPtr->val = copyPtr->val;
-    toPtr->prev = prevNode;
+	Node *prevNode = nullptr;
+	while (copyPtr != nullptr) {
+		toPtr->val = copyPtr->val;
+		toPtr->prev = prevNode;
 
-    if (copyPtr->next != nullptr) {
-        toPtr->next = new Node;
-    } else {
-        toPtr->next = nullptr;
-    }
+		if (copyPtr->next != nullptr) {
+			toPtr->next = new Node;
+		} else {
+			toPtr->next = nullptr;
+		}
 
-    prevNode = toPtr;
-    toPtr = toPtr->next;
-    copyPtr = copyPtr->next;
-}
+		prevNode = toPtr;
+		toPtr = toPtr->next;
+		copyPtr = copyPtr->next;
+	}
 
 	
 	mergeSortCall(myList, p, r);
 
 	// Copy back into the original list
+	// src = source
+	// dst = destination
     Node *src = myList.head;
     Node *dst = head;
     while (src != nullptr && dst != nullptr) {
