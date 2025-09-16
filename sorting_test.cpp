@@ -1045,119 +1045,6 @@ void qs_100000_sort() {
     string dll_str = dll.to_string();
 }
 
-void time_test() {
-    std::srand(std::time(0)); // seed random with current time
-    DoublyLinkedList<int> x;
-    // TO-DO: generate large list
-
-    int total = 0;
-    
-    auto begin = std::chrono::high_resolution_clock::now();
-    qs_10_sort();
-    auto end = std::chrono::high_resolution_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 10.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_100_sort();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 100.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_1000_sort();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 1000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_10000_sort();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 10000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_100000_sort();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 100000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count(); 
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_10_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 10.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_100_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 100.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_1000_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 1000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_10000_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 10000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_100000_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 100000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_10_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 10.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_100_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 100.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_1000_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 1000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_10000_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 10000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    qs_100000_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "quick sort time for 100000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count(); 
-}
-
 // test selection sort with randomized data
 void ms_10_ran() {
     
@@ -1581,118 +1468,7 @@ void ms_100000_sort() {
     string dll_str = dll.to_string();
 }
 
-void time_test() {
-    std::srand(std::time(0)); // seed random with current time
-    DoublyLinkedList<int> x;
-    // TO-DO: generate large list
 
-    int total = 0;
-    
-    auto begin = std::chrono::high_resolution_clock::now();
-    ms_10_sort();
-    auto end = std::chrono::high_resolution_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 10.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_100_sort();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 100.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_1000_sort();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 1000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_10000_sort();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 10000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_100000_sort();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 100000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count(); 
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_10_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 10.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_100_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 100.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_1000_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 1000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_10000_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 10000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_100000_ran();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 100000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_10_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 10.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_100_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 100.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_1000_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 1000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_10000_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 10000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count();
-
-    begin = std::chrono::high_resolution_clock::now();
-    ms_100000_rev();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "merge sort time for 100000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
-    total+=elapsed.count(); 
-}
 
 
 // test selection sort with randomized data
@@ -2117,7 +1893,6 @@ void is_100000_sort() {
 
     string dll_str = dll.to_string();
 }
-
 void time_test() {
     std::srand(std::time(0)); // seed random with current time
     DoublyLinkedList<int> x;
@@ -2126,9 +1901,114 @@ void time_test() {
     int total = 0;
     
     auto begin = std::chrono::high_resolution_clock::now();
-    is_10_sort();
+    qs_10_sort();
     auto end = std::chrono::high_resolution_clock::now();
     auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 10.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_100_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 100.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_1000_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 1000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_10000_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 10000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_100000_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 100000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count(); 
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_10_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 10.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_100_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 100.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_1000_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 1000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_10000_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 10000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_100000_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 100000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_10_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 10.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_100_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 100.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_1000_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 1000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_10000_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 10000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    qs_100000_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "quick sort time for 100000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count(); 
+
+    begin = std::chrono::high_resolution_clock::now();
+    is_10_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     cout << "insertion sort time for 10.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
     total+=elapsed.count();
 
@@ -2229,20 +2109,11 @@ void time_test() {
     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     cout << "insertion sort time for 100000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
     total+=elapsed.count();
-}
 
-
-void time_test() {
-    std::srand(std::time(0)); // seed random with current time
-    DoublyLinkedList<int> x;
-    // TO-DO: generate large list
-
-    int total = 0;
-    
-    auto begin = std::chrono::high_resolution_clock::now();
+    begin = std::chrono::high_resolution_clock::now();
     ss_10_ran();
-    auto end = std::chrono::high_resolution_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     cout << "selection sort time for 10.in RANDOM test took " << elapsed.count() << " nanoseconds" << endl;
     total+=elapsed.count();
 
@@ -2308,22 +2179,116 @@ void time_test() {
     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     cout << "selection sort time for 100000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
     total+=elapsed.count();
-}
 
+    begin = std::chrono::high_resolution_clock::now();
+    ms_10_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 10.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
 
+    begin = std::chrono::high_resolution_clock::now();
+    ms_100_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 100.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
 
+    begin = std::chrono::high_resolution_clock::now();
+    ms_1000_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 1000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
 
-void time_test() {
-    std::srand(std::time(0)); // seed random with current time
-    DoublyLinkedList<int> x;
-    // TO-DO: generate large list
+    begin = std::chrono::high_resolution_clock::now();
+    ms_10000_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 10000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
 
-    int total = 0;
+    begin = std::chrono::high_resolution_clock::now();
+    ms_100000_sort();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 100000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count(); 
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_10_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 10.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_100_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 100.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_1000_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 1000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_10000_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 10000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_100000_ran();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 100000.in RANDOMIZED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_10_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 10.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_100_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 100.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_1000_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 1000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_10000_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 10000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    ms_100000_rev();
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cout << "merge sort time for 100000.in REVERSED test took " << elapsed.count() << " nanoseconds" << endl;
+    total+=elapsed.count(); 
     
-    auto begin = std::chrono::high_resolution_clock::now();
+    begin = std::chrono::high_resolution_clock::now();
     ss_10_sort();
-    auto end = std::chrono::high_resolution_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     cout << "selection sort time for 10.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
     total+=elapsed.count();
 
@@ -2354,21 +2319,11 @@ void time_test() {
     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     cout << "selection sort time for 100000.in SORTED test took " << elapsed.count() << " nanoseconds" << endl;
     total+=elapsed.count();
-}
-
-
-
-void time_test() {
-    std::srand(std::time(0)); // seed random with current time
-    DoublyLinkedList<int> x;
-    // TO-DO: generate large list
-
-    int total = 0;
     
-    auto begin = std::chrono::high_resolution_clock::now();
+    begin = std::chrono::high_resolution_clock::now();
     ss_10_ran();
-    auto end = std::chrono::high_resolution_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     cout << "selection sort time for 10.in RANDOM test took " << elapsed.count() << " nanoseconds" << endl;
     total+=elapsed.count();
 
