@@ -40,6 +40,7 @@ class DoublyLinkedList
 	void 					quickSort				( void );
 	void 					quickSortCall			( DoublyLinkedList<T>& myList, int p, int r );
 	void 					partition				( DoublyLinkedList<T>& myList, int p, int r );
+	
 	// Returns a string representation of the list to make testing easier
 	std::string 			to_string				(  ) const {
 		std::stringstream s;

@@ -855,14 +855,31 @@ void 		DoublyLinkedList<T>::partition	( DoublyLinkedList<T>& myList, int p, int 
 	}
 
 	int i = p - 1;
+	T swap;
 
-	Node *ptr = myList.head;
+	Node *jPtr = myList.head;
 	for ( int counter = 0; counter < j; counter++ ) {
-		
+		jPtr = jPtr->next;
+	}
+
+	Node *iPtr = myList.head;
+	for ( int counter2 = 0; counter2 < i; counter2++ ) {
+		iPtr = iPtr->next;
 	}
 
 	for ( int j = p; j < r-1; j++ ) {
-		
+		if (jPtr->val <= pivot->val) {
+			i++;
+			swap = iPtr->val;
+			iPtr->val = jPtr->val;
+			jPtr->val = swap;
+			iPtr = iPtr->next;
+		}
+		jPtr = jPtr->next;
 	}
+	swap2 = iPtr->val;
+	iPtr->val = jPtr->val;
+	jPtr->val = swap2;
+	i++;
 }
 
