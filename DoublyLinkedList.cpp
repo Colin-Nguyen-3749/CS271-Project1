@@ -846,48 +846,53 @@ void 		DoublyLinkedList<T>::quickSortCall 	( DoublyLinkedList<T>& myList, int p,
 // none
 //===================================================
 template <typename T>
-int 		DoublyLinkedList<T>::partition	( DoublyLinkedList<T>& myList, int p, int r )
+int 		DoublyLinkedList<T>::partition	(DoublyLinkedList<T>& myList, int p, int r) 
 {
-	Node *pivot = myList.head;
+    // Move pivotPtr to the r-th node
+    Node* pivotPtr = myList.head;
+    for (int k = 0; k < r; k++) {
+        pivotPtr = pivotPtr->next;
+    }
 
-	/*
-	Node *temp = myList.head;
-	while (temp != nullptr) {
-		cout << temp->val << endl;
-		temp = temp->next;
-	}
-	*/
-	for ( int i = 0; i < r; i++ ) {
-		pivot = pivot->next;
-	}
-
-	int i = p; // this is equal to -1 
+    T pivotVal = pivotPtr->val;
 	T swap;
-	T swap2;
-	
-	Node *iPtr = myList.head;
-	Node *jPtr = myList.head;
-	jPtr = iPtr->next;
 
-	while ( jPtr->next->next != nullptr) {
-		if (jPtr->val <= pivot->val) {
-			i++;
+    // Move iPtr to the (p-1)-th node (or nullptr if p == 0)
+    Node* iPtr = nullptr;
+    if (p > 0) {
+        iPtr = myList.head;
+        for (int k = 0; k < p - 1; k++) {
+            iPtr = iPtr->next;
+        }
+    }
 
-			// swap
+    // jPtr starts at p-th node
+    Node* jPtr = (iPtr == nullptr) ? myList.head : iPtr->next;
+
+    for (int k = p; k < r; k++) {
+        if (jPtr->val <= pivotVal) {
+            iPtr = (iPtr == nullptr) ? myList.head : iPtr->next;
 			swap = iPtr->val;
 			iPtr->val = jPtr->val;
 			jPtr->val = swap;
-			
-			// i++ equivalent
-			iPtr = iPtr->next;
-		}
-		jPtr = jPtr->next;
-	}
-	
-	//iPtr = iPtr->next;
-	swap2 = iPtr->val;
-	iPtr->val = pivot->val;
-	pivot->val = swap2;
-	return i++;
+        }
+        jPtr = jPtr->next;
+    }
+
+    // Put pivot in correct place
+    iPtr = (iPtr == nullptr) ? myList.head : iPtr->next;
+	swap = iPtr->val;
+	iPtr->val = pivotPtr->val;
+	pivotPtr->val = swap;
+
+    // Return pivot index 
+    int idx = 0;
+    Node* temp = myList.head;
+    while (temp != iPtr) {
+        temp = temp->next;
+        idx++;
+    }
+    return idx;
 }
+
 
