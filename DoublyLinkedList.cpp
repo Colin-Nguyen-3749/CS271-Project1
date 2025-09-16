@@ -780,7 +780,7 @@ template <typename T>
 void		DoublyLinkedList<T>::quickSort	( void )
 {	
 	int n = length();
-	int q = n/2;
+	//int q = n/2; not needed
 	int p = 0;
 	int r = n-1;
 	
@@ -857,12 +857,11 @@ int 		DoublyLinkedList<T>::partition	( DoublyLinkedList<T>& myList, int p, int r
 		temp = temp->next;
 	}
 	*/
-
 	for ( int i = 0; i < r; i++ ) {
 		pivot = pivot->next;
 	}
 
-	int i = p - 1; // this is equal to -1 
+	int i = p; // this is equal to -1 
 	T swap;
 	T swap2;
 	
@@ -870,7 +869,7 @@ int 		DoublyLinkedList<T>::partition	( DoublyLinkedList<T>& myList, int p, int r
 	Node *jPtr = myList.head;
 	jPtr = iPtr->next;
 
-	while ( jPtr->next != nullptr) {
+	while ( jPtr->next->next != nullptr) {
 		if (jPtr->val <= pivot->val) {
 			i++;
 
@@ -884,10 +883,11 @@ int 		DoublyLinkedList<T>::partition	( DoublyLinkedList<T>& myList, int p, int r
 		}
 		jPtr = jPtr->next;
 	}
-	iPtr = iPtr->next;
+	
+	//iPtr = iPtr->next;
 	swap2 = iPtr->val;
-	iPtr->val = jPtr->val;
-	jPtr->val = swap2;
+	iPtr->val = pivot->val;
+	pivot->val = swap2;
 	return i++;
 }
 

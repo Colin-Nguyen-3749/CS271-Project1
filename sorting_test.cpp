@@ -172,7 +172,7 @@ void ms_int() {
 // qs_int = merge sort for integers
 void qs_int() {
 
-    DoublyLinkedList<float> dll;
+    DoublyLinkedList<int> dll;
     dll.append(0);
     dll.append(4);
     dll.append(2);
@@ -191,7 +191,7 @@ void qs_int() {
     if (dll_str == "0 1 2 3 4 5 6 7") {
         cout << "Yippee!!! " << dll_str << endl;
     } else {
-        cout << "Try again "  << dll_str << endl;
+        cout << "Try again quick sort "  << dll_str << endl;
     }
 }
 
