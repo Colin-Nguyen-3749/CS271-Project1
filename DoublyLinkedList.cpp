@@ -698,20 +698,29 @@ void		DoublyLinkedList<T>::merge	( DoublyLinkedList<T>& myList, int p, int q, in
 	}
 
 	// copy all values in the first half of the list to the left sublist
-	for ( int i = 0; i < L; i++ ) {
+	for (int i = 0; i < L; i++) {
 		leftQtr->val = qtr->val;
-		leftQtr->next = new Node;
-		leftQtr = leftQtr->next;
 		qtr = qtr->next;
+		if (i < L - 1) {                   
+			leftQtr->next = new Node;
+			leftQtr = leftQtr->next;
+		} else {
+			leftQtr->next = nullptr;
+		}
 	}
 
 	// copy all values in the second half of the list to the right sublist
-	for ( int j = 0; j < R; j++ ) {
+	for (int j = 0; j < R; j++) {
 		rightPtr->val = ptr->val;
-		rightPtr->next = new Node;
-		rightPtr = rightPtr->next;
 		ptr = ptr->next;
+		if (j < R - 1) {
+			rightPtr->next = new Node;
+			rightPtr = rightPtr->next;
+		} else {
+			rightPtr->next = nullptr;
+		}
 	}
+
 
 	int i = 0;
 	int j = 0;
