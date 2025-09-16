@@ -597,9 +597,40 @@ void 		DoublyLinkedList<T>::mergeSort 	( void )
 	int n = length();
 	int q = n/2;
 	int p = 0;
-	int r = n;
+	int r = n-1;
+	
+	DoublyLinkedList<T> myList;
+myList.head = new Node;
+Node *toPtr = myList.head;
+Node *copyPtr = head;
 
-	mergeSortCall(p, r);
+Node *prevNode = nullptr;
+while (copyPtr != nullptr) {
+    toPtr->val = copyPtr->val;
+    toPtr->prev = prevNode;
+
+    if (copyPtr->next != nullptr) {
+        toPtr->next = new Node;
+    } else {
+        toPtr->next = nullptr;
+    }
+
+    prevNode = toPtr;
+    toPtr = toPtr->next;
+    copyPtr = copyPtr->next;
+}
+
+	
+	mergeSortCall(myList, p, r);
+
+	// Copy back into the original list
+    Node *src = myList.head;
+    Node *dst = head;
+    while (src != nullptr && dst != nullptr) {
+        dst->val = src->val;
+        src = src->next;
+        dst = dst->next;
+    }
 }
 
 //===================================================
@@ -611,17 +642,17 @@ void 		DoublyLinkedList<T>::mergeSort 	( void )
 // none
 //===================================================
 template <typename T>
-void 		DoublyLinkedList<T>::mergeSortCall 	( int p, int r )
+void 		DoublyLinkedList<T>::mergeSortCall 	( DoublyLinkedList<T>& myList, int p, int r )
 {	
+
 	if ( p >= r ) {
 		return;
 	}
-	int n = length();
-	int q = floor((p+r)/2);
+	int q = ((p+r)/2);
 
-	mergeSortCall(p, q);
-	mergeSortCall(q+1, r);
-	merge(p, q, n);
+	mergeSortCall(myList, p, q);
+	mergeSortCall(myList, q+1, r);
+	merge(myList, p, q, r);
 }
 
 //===================================================
@@ -633,7 +664,7 @@ void 		DoublyLinkedList<T>::mergeSortCall 	( int p, int r )
 // none
 //===================================================
 template <typename T>
-void		DoublyLinkedList<T>::merge	( int p, int q, int r )
+void		DoublyLinkedList<T>::merge	( DoublyLinkedList<T>& myList, int p, int q, int r )
 {
 	DoublyLinkedList<T> leftSublist; // equivalent of left subarray 
 	DoublyLinkedList<T> rightSublist; // equivalent of right subarray
@@ -646,29 +677,34 @@ void		DoublyLinkedList<T>::merge	( int p, int q, int r )
 	leftQtr = leftSublist.head;
 	rightPtr = rightSublist.head;
 	
-	Node *ptr = head; // ptr keeps track of the original list for the RIGHT sublist
-	Node *qtr = head; // qtr keeps track of the original list for the LEFT sublist
+	Node *ptr = myList.head; // ptr keeps track of the original list for the RIGHT sublist
+	Node *qtr = myList.head; // qtr keeps track of the original list for the LEFT sublist
 
-	q = length()/2;
-	int L = q - p; // left index tracker // removed + 1 after the p
+	//q = length()/2;
+	int L = q - p + 1; // left index tracker // removed + 1 after the p
 	int R = r - q; // right index tracker
 
+
 	// move ptr to the halfway point of the list
-	for ( int k = 0; k < q; k++ ) {
+	for ( int k = 0; k < q+1; k++ ) {
 		ptr = ptr->next;
+
+	}
+
+	for ( int g = 0; g < p; g++ ) {
+		qtr = qtr->next;
 	}
 
 	// copy all values in the first half of the list to the left sublist
-	for ( int i = 0; i < L-1; i++ ) {
-		cout << qtr->val << endl;
+	for ( int i = 0; i < L; i++ ) {
 		leftQtr->val = qtr->val;
 		leftQtr->next = new Node;
 		leftQtr = leftQtr->next;
 		qtr = qtr->next;
 	}
-	
+
 	// copy all values in the second half of the list to the right sublist
-	for ( int j = 0; j < R-1; j++ ) {
+	for ( int j = 0; j < R; j++ ) {
 		rightPtr->val = ptr->val;
 		rightPtr->next = new Node;
 		rightPtr = rightPtr->next;
@@ -679,7 +715,16 @@ void		DoublyLinkedList<T>::merge	( int p, int q, int r )
 	int j = 0;
 	int k = p;
 
-	ptr = head; // ptr is now being used as an overall pointer, not just for the right sublist
+	
+	// ptr is now being used as an overall pointer, not just for the right sublist
+	Node *toPtr;
+	toPtr = myList.head;
+
+	for ( int m = 0; m < k; m++ ) {
+		if (toPtr->next != nullptr) {
+			toPtr= toPtr->next;
+		}
+	}
 
 	rightPtr = rightSublist.head;
 	leftQtr = leftSublist.head; // reset both leftNode and rightNode pointers to the head
@@ -687,29 +732,86 @@ void		DoublyLinkedList<T>::merge	( int p, int q, int r )
 	while ( i < L && j < R ) {
 		// if the item in the left sublist is less than the right sublist, copy that over to the ptr list
 		if (leftQtr->val <= rightPtr->val) {
-			ptr->val = leftQtr->val;
+			toPtr->val = leftQtr->val;
 			leftQtr = leftQtr->next;
 			i++;
 		} else {
 			// if the item in the right sublist is less than the left sublist, copy that over to the ptr list
-			ptr->val = rightPtr->val;
+			toPtr->val = rightPtr->val;
 			rightPtr = rightPtr->next;
 			j++;
 		}
-		ptr = ptr->next;
+		toPtr = toPtr->next;
+		k++;
 	}
 
 	// handle any leftovers in the left or right sublist
 	while ( i < L ) {
-		ptr->val = leftQtr->val;
+		toPtr->val = leftQtr->val;
 		i++;
-		ptr = ptr->next;
+		toPtr = toPtr->next;
 		leftQtr = leftQtr->next;
+		k++;
 	}
 	while ( j < R ) {
-		ptr->val = rightPtr->val;
+		toPtr->val = rightPtr->val;
 		j++;
-		ptr = ptr->next;
+		toPtr = toPtr->next;
 		rightPtr = rightPtr->next;
+		k++;
+	}
+
+	leftQtr = leftSublist.head;
+	rightPtr = rightSublist.head;
+}
+/*
+
+//===================================================
+// Quick sort
+// Items are first partitioned and then combined to 
+// be sorted
+// PARAMETERS:
+// none
+// RETURN VALUE:
+// none 
+//===================================================
+template <typename T>
+void		DoublyLinkedList<T>::quickSort	( void )
+{
+	DoublyLinkedList<T> myList;
+	Node *copyPtr;
+	Node *toPtr;
+	myList.head = new Node;
+	copyPtr = myList.head;
+	toPtr = head;
+
+	int p = 0;
+	int r = length();
+	for ( int i = 0; i < r; i++ ) {
+		copyPtr->val = toPtr->val;
+		copyPtr = copyPtr->next;
+		toPtr = toPtr->next;
+	}
+
+	quickSortCall(myList, p, q);
+}
+//===================================================
+// Quick sort call
+// This is how I'm trying to implement the 
+// recursive calls
+// PARAMETERS:
+// none
+// RETURN VALUE:
+// none 
+//===================================================
+template <typename T>
+void 		DoublyLinkedList<T>::quickSortCall 	( const DoublyLinkedList<T>& myList, int p, int r ) 
+{
+	if (p < r) {
+		q = partition(myList, p, r);
+		quickSortCall(myList, p, q-1);
+		quickSortCall(myList, q+1, r);
 	}
 }
+
+*/
